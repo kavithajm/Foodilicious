@@ -13,13 +13,15 @@ from elasticsearch import Elasticsearch, helpers # Client for elastic search
 # Creating a instance
 client = Elasticsearch("localhost:9200")
 
-file_allRecipe = open("E:/sem9/Information Retrievel/Search_Engine Project/PreprocessedallRecipe.txt","rb+")
-file_foodista = open("E:/sem9/Information Retrievel/Search_Engine Project/PreprocessedFoodista.txt","rb+")
+file_allRecipe = open("E:/sem9/Information Retrievel/Search_Engine Project/AllRecipePreprocessed.txt","r+", encoding="utf8")
+file_foodista = open("E:/sem9/Information Retrievel/Search_Engine Project/PreprocessedFoodista.txt","r+", encoding="utf8")
 file_spoonacular = open("E:/sem9/Information Retrievel/Search_Engine Project/PreprocessedSpoonacular.txt","r+", encoding="utf8")
+file_cookbook = open("E:/sem9/Information Retrievel/Search_Engine Project/PreprocessedCookbook.txt","r+", encoding="utf8")
 
 data_allRecipe = file_allRecipe.readlines()
 data_foodista = file_foodista.readlines()
 data_spoonacular = file_spoonacular.readlines()
+data_cookbook = file_cookbook.readlines()
 
 # Converting the file data to a list of json(each json is a recipe)
 doc_list=[]
@@ -43,6 +45,12 @@ def convert_data_json(data):
 convert_data_json(data_allRecipe)
 convert_data_json(data_foodista)
 convert_data_json(data_spoonacular)
+convert_data_json(data_cookbook)
+
+file_allRecipe.close()
+file_foodista.close()
+file_spoonacular.close()
+file_cookbook.close()
 
 print ("Dict docs length = ", len(doc_list))
 
